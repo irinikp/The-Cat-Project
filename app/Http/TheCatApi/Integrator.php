@@ -16,14 +16,14 @@ class Integrator
     protected function http_response($url, $status = null, $wait = 3)
     {
         $failed_response = '';
-        $time = microtime(true);
-        $expire = $time + $wait;
-
-        // we fork the process so we don't have to wait for a timeout
-        $pid = pcntl_fork();
-        if ($pid == -1) {
-            die('could not fork');
-        } else if ($pid) {
+//        $time = microtime(true);
+//        $expire = $time + $wait;
+//
+//        // we fork the process so we don't have to wait for a timeout
+//        $pid = pcntl_fork();
+//        if ($pid == -1) {
+//            die('could not fork');
+//        } else if ($pid) {
             // we are the parent
             $ch = curl_init();
             $request_headers = array('x-api-key:'.$_ENV['CAT_API_KEY']);
@@ -31,43 +31,43 @@ class Integrator
             curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            return [['url' =>1]];
-//            $head = curl_exec($ch);
-//            $response = json_decode($head);
-//            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+//            return [['url' =>1]];
+            $head = curl_exec($ch);
+            $response = json_decode($head);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
-//            if(!$head)
-//            {
-//                return $failed_response;
-//            }
-//
-//            if($status === null)
-//            {
-//                if($httpCode < 400)
-//                {
-//                    return $response;
-//                }
-//                else
-//                {
-//                    return $failed_response;
-//                }
-//            }
-//            elseif($status == $httpCode)
-//            {
-//                return $response;
-//            }
-//
-//            return $failed_response;
-            pcntl_wait($status); //Protect against Zombie children
-        } else {
-            // we are the child
-            while(microtime(true) < $expire)
+            if(!$head)
             {
-                sleep(0.5);
+                return $failed_response;
             }
+//
+            if($status === null)
+            {
+                if($httpCode < 400)
+                {
+                    return $response;
+                }
+                else
+                {
+                    return $failed_response;
+                }
+            }
+            elseif($status == $httpCode)
+            {
+                return $response;
+            }
+
             return $failed_response;
-        }
+//            pcntl_wait($status); //Protect against Zombie children
+//        } else {
+//            // we are the child
+//            while(microtime(true) < $expire)
+//            {
+//                sleep(0.5);
+//            }
+//            return $failed_response;
+//        }
     }
 
 }
