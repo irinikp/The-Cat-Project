@@ -13,7 +13,7 @@ class RandomImageController extends Controller
      */
     public function index()
     {
-//        $image_searcher = new CatImages();
+        $image_searcher = new CatImages();
 //        $response = $image_searcher->search(400);
         $response = "http://www.texasforthem.org/wp-content/uploads/2016/03/Feral-Cat-1.jpg";
         return response()
