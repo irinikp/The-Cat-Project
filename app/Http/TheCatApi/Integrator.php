@@ -13,18 +13,9 @@ class Integrator
 {
     const BASE_URL = "https://api.thecatapi.com/v1/";
 
-    protected function http_response($url, $status = null, $wait = 3)
+    protected function http_response($url, $status = null)
     {
         $failed_response = '';
-//        $time = microtime(true);
-//        $expire = $time + $wait;
-//
-//        // we fork the process so we don't have to wait for a timeout
-//        $pid = pcntl_fork();
-//        if ($pid == -1) {
-//            die('could not fork');
-//        } else if ($pid) {
-            // we are the parent
             $ch = curl_init();
             $request_headers = array('x-api-key:63d6ed7a-1f53-4467-82d7-28795354849c');
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -58,15 +49,6 @@ class Integrator
             }
 
             return $failed_response;
-//            pcntl_wait($status); //Protect against Zombie children
-//        } else {
-//            // we are the child
-//            while(microtime(true) < $expire)
-//            {
-//                sleep(0.5);
-//            }
-//            return $failed_response;
-//        }
     }
 
 }
