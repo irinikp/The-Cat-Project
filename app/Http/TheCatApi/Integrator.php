@@ -31,33 +31,34 @@ class Integrator
             curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            $head = curl_exec($ch);
-            $response = json_decode($head);
-            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            return [['url' =>1]];
+//            $head = curl_exec($ch);
+//            $response = json_decode($head);
+//            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
-            if(!$head)
-            {
-                return $failed_response;
-            }
-
-            if($status === null)
-            {
-                if($httpCode < 400)
-                {
-                    return $response;
-                }
-                else
-                {
-                    return $failed_response;
-                }
-            }
-            elseif($status == $httpCode)
-            {
-                return $response;
-            }
-
-            return $failed_response;
+//            if(!$head)
+//            {
+//                return $failed_response;
+//            }
+//
+//            if($status === null)
+//            {
+//                if($httpCode < 400)
+//                {
+//                    return $response;
+//                }
+//                else
+//                {
+//                    return $failed_response;
+//                }
+//            }
+//            elseif($status == $httpCode)
+//            {
+//                return $response;
+//            }
+//
+//            return $failed_response;
             pcntl_wait($status); //Protect against Zombie children
         } else {
             // we are the child
