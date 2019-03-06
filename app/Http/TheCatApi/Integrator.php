@@ -17,7 +17,7 @@ class Integrator
     {
         $failed_response = '';
             $ch = curl_init();
-            $request_headers = array('x-api-key:63d6ed7a-1f53-4467-82d7-28795354849c');
+            $request_headers = array('x-api-key:'.$_ENV['CAT_API_KEY']);
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
 
