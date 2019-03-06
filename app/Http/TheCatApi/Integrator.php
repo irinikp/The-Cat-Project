@@ -31,9 +31,9 @@ class Integrator
             curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            $head = curl_exec($ch);
-            $response = json_decode($head);
-//            $url = $response[0]->url;
+//            $head = curl_exec($ch);
+//            $response = json_decode($head);
+            $response = ['url' => 'http'];
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
