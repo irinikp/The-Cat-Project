@@ -19,8 +19,7 @@ class Images extends Integrator
         $url = self::BASE_URL . self::CLASS_URL . "search?size=$size&mime_types=$mime_types&format=$format&order=$order&page=$page"
             . "&limit=$limit&category_ids=$category_ids&breed_ids=$breed_ids";
         $response = $this->http_response($url);
-//        $url = $response[0]->url;
-        return $url;
+        return $response[0]->url;
     }
 
 }
