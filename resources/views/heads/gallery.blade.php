@@ -4,5 +4,5 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-<link href="{!! asset('css/random-image.css') !!}" media="all" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="{!! asset('js/random-image.js') !!}"></script>
+<link href="/css/random-image.css" media="all" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/js/random-image.js"></script>

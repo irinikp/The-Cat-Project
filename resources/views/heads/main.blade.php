@@ -1,1 +1,1 @@
-<link href="{!! asset('css/main-page.css') !!}" media="all" rel="stylesheet" type="text/css"/>
+<link href="/css/main-page.css" media="all" rel="stylesheet" type="text/css"/>
