@@ -28,7 +28,7 @@ class Images extends Integrator
         $function_url = "analysis/";
         $url = self::BASE_URL . self::CLASS_URL . $image_id . "/" . $function_url;
         $response = $this->http_response($url);
-        return $response[0];
+        return $response;
     }
 
     public function get($image_id)

@@ -20,5 +20,8 @@ class ClickLinksTest extends BaseTestCase
         $this->visit('/')
             ->click('Random Image')
             ->seePageIs('/random-image');
+        $this->visit('/random-image')
+            ->click('reload-button')
+            ->seePageIs('/random-image');
     }
 }

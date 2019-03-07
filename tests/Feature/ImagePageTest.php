@@ -18,13 +18,13 @@ class ImagePageTest extends TestCase
         $response = $this->get('/image/klLnMZy3q');
 
         $response->assertStatus(200);
-        $response->assertSee('<img src="https://cdn2.thecatapi.com/images/klLnMZy3q.jpg" alt="image of cat"/><br/>');
+        $response->assertSee('<img src="https://cdn2.thecatapi.com/images/klLnMZy3q.jpg" alt="image of cat"');
         $response->assertSee('Weight: 7 - 20 (Imperial) / 3 - 9 (metric)<br/>');
         $response->assertSee('Id: tvan<br/>');
         $response->assertSee('Name: Turkish Van<br/>');
-        $response->assertSee('CFA URL: <a href="http://cfa.org/Breeds/BreedsSthruT/TurkishVan.aspx" target="_blank">http://cfa.org/Breeds/BreedsSthruT/TurkishVan.aspx</a><br/>');
-        $response->assertSee('Vet Street URL: <a href="http://www.vetstreet.com/cats/turkish-van" target="_blank">http://www.vetstreet.com/cats/turkish-van</a><br/>');
-        $response->assertSee('VCA Hospitals URL: <a href="https://vcahospitals.com/know-your-pet/cat-breeds/turkish-van" target="_blank">https://vcahospitals.com/know-your-pet/cat-breeds/turkish-van</a><br/>');
+        $response->assertSee('CFA URL: <a href="http://cfa.org/Breeds/BreedsSthruT/TurkishVan.aspx"');
+        $response->assertSee('Vet Street URL: <a href="http://www.vetstreet.com/cats/turkish-van"');
+        $response->assertSee('VCA Hospitals URL: <a href="https://vcahospitals.com/know-your-pet/cat-breeds/turkish-van"');
         $response->assertSee('Temperament: Agile, Intelligent, Loyal, Playful, Energetic<br/>');
         $response->assertSee('Origin: Turkey<br/>');
         $response->assertSee('Country code: TR / TR<br/>');
@@ -51,7 +51,7 @@ class ImagePageTest extends TestCase
         $response->assertSee('Rex: 0<br/>');
         $response->assertSee('Suppressed tail: 0<br/>');
         $response->assertSee('Short legs: 0<br/>');
-        $response->assertSee('Wikipedia URL: <a href="https://en.wikipedia.org/wiki/Turkish_Van" target="_blank">https://en.wikipedia.org/wiki/Turkish_Van</a><br/>');
+        $response->assertSee('Wikipedia URL: <a href="https://en.wikipedia.org/wiki/Turkish_Van"');
         $response->assertSee('Hypoallergenic: 0<br/>');
         $response->assertSeeText('Angora');
         $response->assertSeeText('Pet');
@@ -64,5 +64,12 @@ class ImagePageTest extends TestCase
         $response->assertSeeText('Pillow');
         $response->assertSeeText('Manx');
         $response->assertSeeText('Created at 2018-12-07T12:10:47.000Z');
+
+        $response = $this->get('/image/2pb');
+        $response->assertStatus(200);
+        $response->assertSee('<img src="https://cdn2.thecatapi.com/images/2pb.gif" alt="image of cat"');
+        $response->assertDontSee('Weight:');
+        $response->assertDontSee('Created at');
+
     }
 }

@@ -19,6 +19,5 @@ class RandomImagePageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('<img src="https://cdn2.thecatapi.com/images/');
-        $response->assertSee('" alt="random cat image"/>');
     }
 }

@@ -14,7 +14,7 @@ class ImageController extends Controller
     public function index()
     {
         $image_handler = new CatImages();
-        $images = $image_handler->search(400, 5);
+        $images = $image_handler->search(400, 8);
         return response()
             ->view('random-image', ['images' => $images], 200);
     }
