@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="/random-image">Random Image</a>
+                    <a href="/random-image">Random Images</a>
                 </div>
             </div>
         </div>
