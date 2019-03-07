@@ -16,10 +16,19 @@ class Images extends Integrator
     public function search($size = 'full', $mime_types = 'jpg,png,gif', $format = 'json', $order = 'RANDOM', $page = 0,
                            $limit = 1, $category_ids = '', $breed_ids = '')
     {
-        $url = self::BASE_URL . self::CLASS_URL . "search?size=$size&mime_types=$mime_types&format=$format&order=$order&page=$page"
+        $function_url = "search";
+        $url = self::BASE_URL . self::CLASS_URL . $function_url . "?size=$size&mime_types=$mime_types&format=$format&order=$order&page=$page"
             . "&limit=$limit&category_ids=$category_ids&breed_ids=$breed_ids";
         $response = $this->http_response($url);
-        return $response[0]->url;
+        return $response[0];
+    }
+
+    public function analysis($image_id)
+    {
+        $function_url = "analysis";
+        $url = self::BASE_URL . self::CLASS_URL . $image_id . "/" . $function_url;
+        $response = $this->http_response($url);
+        return $response[0];
     }
 
 }
