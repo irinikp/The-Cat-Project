@@ -14,11 +14,11 @@ class RandomImageController extends Controller
     public function index()
     {
         $image_handler = new CatImages();
-        $response = $image_handler->search(400);
-        $url = $response->url;
-        $image_id = $response->id;
-        $analysis = $image_handler->analysis($image_id);
+        $images = $image_handler->search(400, 5);
+//        $url = $images->url;
+//        $image_id = $images->id;
+//        $analysis = $image_handler->analysis($image_id);
         return response()
-            ->view('random-image', ['url' => $url, 'analysis' => $analysis], 200);
+            ->view('random-image', ['images' => $images], 200);
     }
 }
