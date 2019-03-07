@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\TheCatApi\Images as CatImages;
 
-class RandomImageController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,5 +20,19 @@ class RandomImageController extends Controller
 //        $analysis = $image_handler->analysis($image_id);
         return response()
             ->view('random-image', ['images' => $images], 200);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $image_handler = new CatImages();
+        $image = $image_handler->get($id);
+        return response()->view('image', ['image' => $image], 200);
     }
 }

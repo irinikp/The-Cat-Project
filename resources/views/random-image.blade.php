@@ -1,5 +1,5 @@
 @foreach( $images as $image)
-    <img src="{{$image->url}}" alt="random cat image"/> <br/>
+    <a href="/image/{{$image->id}}"><img src="{{$image->url}}" alt="random cat image"/></a> <br/>
 @endforeach
 {{--@if(sizeof($analysis->labels) > 0 )--}}
     {{--@foreach ($analysis->labels as $label)--}}

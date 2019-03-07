@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/random-image', 'RandomImageController@index');
+Route::get('/random-image', 'ImageController@index');
+Route::get('/image/{id}', 'ImageController@show');

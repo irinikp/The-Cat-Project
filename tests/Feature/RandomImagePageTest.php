@@ -13,7 +13,7 @@ class RandomImagePageTest extends TestCase
      *
      * @return void
      */
-    public function testMainPageText()
+    public function testRandomImagePageText()
     {
         $response = $this->get('/random-image');
 

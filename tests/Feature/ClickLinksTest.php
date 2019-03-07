@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use Tests\CreatesApplication;
 
-class ClickRandomImageTest extends BaseTestCase
+class ClickLinksTest extends BaseTestCase
 {
     use CreatesApplication;
     public $baseUrl = 'http://localhost';
