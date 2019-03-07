@@ -53,5 +53,16 @@ class ImagePageTest extends TestCase
         $response->assertSee('Short legs: 0<br/>');
         $response->assertSee('Wikipedia URL: <a href="https://en.wikipedia.org/wiki/Turkish_Van" target="_blank">https://en.wikipedia.org/wiki/Turkish_Van</a><br/>');
         $response->assertSee('Hypoallergenic: 0<br/>');
-   }
+        $response->assertSeeText('Angora');
+        $response->assertSeeText('Pet');
+        $response->assertSeeText('Mammal');
+        $response->assertSeeText('Cat');
+        $response->assertSeeText('Animal');
+        $response->assertSeeText('Couch');
+        $response->assertSeeText('Furniture');
+        $response->assertSeeText('Cushion');
+        $response->assertSeeText('Pillow');
+        $response->assertSeeText('Manx');
+        $response->assertSeeText('Created at 2018-12-07T12:10:47.000Z');
+    }
 }

@@ -15,9 +15,6 @@ class ImageController extends Controller
     {
         $image_handler = new CatImages();
         $images = $image_handler->search(400, 5);
-//        $url = $images->url;
-//        $image_id = $images->id;
-//        $analysis = $image_handler->analysis($image_id);
         return response()
             ->view('random-image', ['images' => $images], 200);
     }
@@ -33,6 +30,7 @@ class ImageController extends Controller
     {
         $image_handler = new CatImages();
         $image = $image_handler->get($id);
-        return response()->view('image', ['image' => $image], 200);
+        $analysis = $image_handler->analysis($id);
+        return response()->view('image', ['image' => $image, 'analysis' => $analysis], 200);
     }
 }
