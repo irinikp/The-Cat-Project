@@ -19,7 +19,8 @@ class ImagePageTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('<img src="https://cdn2.thecatapi.com/images/klLnMZy3q.jpg" alt="image of cat"');
-        $response->assertSee('Weight: 7 - 20 (Imperial) / 3 - 9 (metric)<br/>');
+        $response->assertSee('Weight: 7 - 20 (Imperial)');
+        $response->assertSee('3 - 9 (metric)<br/>');
         $response->assertSee('Id: tvan<br/>');
         $response->assertSee('Name: Turkish Van<br/>');
         $response->assertSee('CFA URL: <a href="http://cfa.org/Breeds/BreedsSthruT/TurkishVan.aspx"');
@@ -71,5 +72,7 @@ class ImagePageTest extends TestCase
         $response->assertDontSee('Weight:');
         $response->assertDontSee('Created at');
 
+        $response = $this->get('/image/xBR2jSIG7');
+        $response->assertStatus(200);
     }
 }
