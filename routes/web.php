@@ -17,3 +17,11 @@ Route::get('/', function () {
 
 Route::get('/random-image', 'ImageController@index');
 Route::get('/image/{id}', 'ImageController@show');
+Route::fallback(function () {
+    return response()->json(
+        [
+            'success' => false,
+            'message' => 'Route not found'
+        ], 404
+    );
+})->name('api.fallback.404');

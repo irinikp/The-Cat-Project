@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\TheCatApi\Images as CatImages;
+use App\Http\TheCatApi\Image as CatImages;
 
 class ImageController extends Controller
 {
@@ -23,8 +23,9 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function show($id)
     {
