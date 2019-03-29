@@ -10,7 +10,7 @@ use Tests\TestCase;
  */
 class FallbackRouteTest extends TestCase
 {
-    public function testMissingApiRouteShouldReturn404()
+    public function test_missing_api_route_should_return_404()
     {
         $this->withoutExceptionHandling();
         $response = $this->get('/api/missing-route');

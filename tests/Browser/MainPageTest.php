@@ -2,13 +2,12 @@
 
 namespace Tests\Browser;
 
-use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\DuskTestCase;
 
 class MainPageTest extends DuskTestCase
 {
-    public function testBasicExample()
+    public function test_see_correct_title_on_main_page()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')

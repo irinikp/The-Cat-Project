@@ -2,17 +2,16 @@
 
 namespace Tests\Browser;
 
-use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\DuskTestCase;
 
 class RandomImagePageTest extends DuskTestCase
 {
-    public function testExample()
+    public function test_random_image_button_works()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/random-image')
-                    ->assertVisible('.reload-butto')
+                ->assertVisible('.reload-button')
                 ->assertSeeIn('.reload-button', 'Reload');
         });
     }

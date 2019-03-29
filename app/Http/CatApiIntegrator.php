@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\CatImage;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Collection;
 
 class CatApiIntegrator
@@ -32,8 +33,10 @@ class CatApiIntegrator
      * @param int $page
      * @param string $category_ids
      * @param string $breed_ids
-     * @return Collection of CatImage items
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return Collection<CatImage>
+     *
+     * @throws GuzzleException
      */
     public function search($size = 'full', $limit = 1, $mime_types = 'jpg,png,gif', $format = 'json', $order = 'RANDOM',
                            $page = 0, $category_ids = '', $breed_ids = '')
@@ -66,8 +69,10 @@ class CatApiIntegrator
 
     /**
      * @param CatImage $image
+     *
      * @return CatImage
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @throws GuzzleException
      */
     public function analysis($image)
     {
@@ -82,8 +87,10 @@ class CatApiIntegrator
 
     /**
      * @param int $image_id
+     *
      * @return CatImage
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @throws GuzzleException
      */
     public function get($image_id)
     {
