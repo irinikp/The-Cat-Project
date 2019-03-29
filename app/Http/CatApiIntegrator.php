@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\TheCatApi;
+namespace App\Http;
 
+use App\CatImage;
 use GuzzleHttp\Client;
+use Illuminate\Support\Collection;
 
-class Image
+class CatApiIntegrator
 {
     const BASE_URL = "https://api.thecatapi.com/v1/";
     const CLASS_URL = "images/";
@@ -21,10 +23,22 @@ class Image
         $this->headers = ['x-api-key:' . $_ENV['CAT_API_KEY']];
     }
 
+    /**
+     * @param string $size
+     * @param int $limit
+     * @param string $mime_types
+     * @param string $format
+     * @param string $order
+     * @param int $page
+     * @param string $category_ids
+     * @param string $breed_ids
+     * @return Collection of CatImage items
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function search($size = 'full', $limit = 1, $mime_types = 'jpg,png,gif', $format = 'json', $order = 'RANDOM',
                            $page = 0, $category_ids = '', $breed_ids = '')
     {
-        return json_decode(($this->client->request(
+        $response = json_decode(($this->client->request(
             'GET',
             "images/search",
             [
@@ -41,34 +55,46 @@ class Image
                 'headers' => $this->headers
             ]
         ))->getBody());
+        $cat_collection = new Collection();
+        foreach ($response as $cat_array) {
+            $cat = new CatImage();
+            $cat->populate($cat_array);
+            $cat_collection->add($cat);
+        }
+        return $cat_collection;
     }
 
     /**
-     * @param int $image_id
-     * @return array
+     * @param CatImage $image
+     * @return CatImage
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function analysis($image_id)
+    public function analysis($image)
     {
-        return json_decode(($this->client->request(
+        $response = json_decode(($this->client->request(
             'GET',
-            "images/$image_id/analysis",
+            "images/$image->id/analysis",
             ['headers' => $this->headers]
         ))->getBody());
+        $image->populate_analysis($response);
+        return $image;
     }
 
     /**
      * @param int $image_id
-     * @return array
+     * @return CatImage
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get($image_id)
     {
-        return json_decode(($this->client->request(
+        $response = json_decode(($this->client->request(
             'GET',
             "images/$image_id",
             ['headers' => $this->headers]
         ))->getBody());
+        $cat_image = new CatImage();
+        $cat_image->populate($response);
+        return $cat_image;
     }
 
 }

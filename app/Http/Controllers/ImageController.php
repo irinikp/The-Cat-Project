@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\TheCatApi\Image as CatImages;
+use App\Http\CatApiIntegrator;
 
 class ImageController extends Controller
 {
@@ -10,13 +10,14 @@ class ImageController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function index()
     {
-        $image_handler = new CatImages();
-        $images = $image_handler->search(400, 8);
+        $cat_api = new CatApiIntegrator();
+        $cat_collection = $cat_api->search(400, 8);
         return response()
-            ->view('random-image', ['images' => $images], 200);
+            ->view('random-image', ['cat_collection' => $cat_collection], 200);
     }
 
 
@@ -29,9 +30,11 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $image_handler = new CatImages();
+        $image_handler = new CatApiIntegrator();
         $image = $image_handler->get($id);
-        $analysis = $image_handler->analysis($id);
-        return response()->view('image', ['image' => $image, 'analysis' => $analysis], 200);
+        $image = $image_handler->analysis($image);
+
+        return response()->view('image', ['image' => $image], 200);
+//        return response()->view('image', ['image' => $image, 'analysis' => $analysis], 200);
     }
 }

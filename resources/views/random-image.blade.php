@@ -14,11 +14,10 @@
     <div class="row">
 
 
-        @foreach( $images as $image)
+        @foreach( $cat_collection as $cat)
             <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a href="/image/{{$image->id}}" class="fancybox" rel="ligthbox">
-                    <img src="{{$image->url}}?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid " alt="">
-
+                <a href="/image/{{$cat->id}}" class="fancybox" rel="ligthbox">
+                    <img src="{{$cat->url}}?auto=compress&cs=tinysrgb&h=650&w=940" class="zoom img-fluid " alt="">
                 </a>
             </div>
         @endforeach
