@@ -1,0 +1,13 @@
+{
+  "breeds": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "hats"
+    }
+  ],
+  "id": "34l",
+  "url": "https://cdn2.thecatapi.com/images/34l.jpg",
+  "width": 480,
+  "height": 320
+}

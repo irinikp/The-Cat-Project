@@ -1,0 +1,13 @@
+{
+  "breeds": [],
+  "categories": [
+    {
+      "id": 6,
+      "name": "caturday"
+    }
+  ],
+  "id": "q5",
+  "url": "https://cdn2.thecatapi.com/images/q5.jpg",
+  "width": 700,
+  "height": 466
+}

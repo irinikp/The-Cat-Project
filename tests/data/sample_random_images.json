@@ -1,0 +1,82 @@
+[
+  {
+    "breeds": [],
+    "categories": [
+      {
+        "id": 5,
+        "name": "boxes"
+      }
+    ],
+    "id": "f1",
+    "url": "https://cdn2.thecatapi.com/images/f1.jpg",
+    "width": 1280,
+    "height": 855
+  },
+  {
+    "breeds": [],
+    "categories": [
+      {
+        "id": 5,
+        "name": "boxes"
+      }
+    ],
+    "id": "hn",
+    "url": "https://cdn2.thecatapi.com/images/hn.jpg",
+    "width": 1200,
+    "height": 1600
+  },
+  {
+    "breeds": [],
+    "id": "mj",
+    "url": "https://cdn2.thecatapi.com/images/mj.jpg",
+    "width": 480,
+    "height": 358
+  },
+  {
+    "breeds": [],
+    "categories": [
+      {
+        "id": 6,
+        "name": "caturday"
+      }
+    ],
+    "id": "q5",
+    "url": "https://cdn2.thecatapi.com/images/q5.jpg",
+    "width": 700,
+    "height": 466
+  },
+  {
+    "breeds": [],
+    "id": "28o",
+    "url": "https://cdn2.thecatapi.com/images/28o.jpg",
+    "width": 500,
+    "height": 331
+  },
+  {
+    "breeds": [],
+    "categories": [
+      {
+        "id": 1,
+        "name": "hats"
+      }
+    ],
+    "id": "34l",
+    "url": "https://cdn2.thecatapi.com/images/34l.jpg",
+    "width": 480,
+    "height": 320
+  },
+  {
+    "breeds": [],
+    "id": "3it",
+    "url": "https://cdn2.thecatapi.com/images/3it.jpg",
+    "width": 500,
+    "height": 338
+  },
+  {
+    "breeds": [],
+    "id": "42e",
+    "url": "https://cdn2.thecatapi.com/images/42e.jpg",
+    "width": 4320,
+    "height": 3240
+  }
+]

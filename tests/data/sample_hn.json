@@ -1,0 +1,13 @@
+{
+  "breeds": [],
+  "categories": [
+    {
+      "id": 5,
+      "name": "boxes"
+    }
+  ],
+  "id": "hn",
+  "url": "https://cdn2.thecatapi.com/images/hn.jpg",
+  "width": 1200,
+  "height": 1600
+}

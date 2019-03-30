@@ -21,6 +21,22 @@ class CatImage extends Model
     }
 
     /**
+     * @param array $api_search_response
+     *
+     * @return Collection<CatImage>
+     */
+    public static function populateCollection($api_search_response)
+    {
+        $cat_collection = new Collection();
+        foreach ($api_search_response as $cat_array) {
+            $cat = new CatImage();
+            $cat->populate($cat_array);
+            $cat_collection->add($cat);
+        }
+        return $cat_collection;
+    }
+
+    /**
      * @param Object $attributes
      */
     public function populate($attributes)

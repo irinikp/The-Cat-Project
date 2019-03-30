@@ -21,7 +21,12 @@ class CatApiIntegrator
             'base_uri' => self::BASE_URL,
             'timeout' => 2.0
         ]);
-        $this->headers = ['x-api-key:' . $_ENV['CAT_API_KEY']];
+        $this->headers = ['x-api-key:' . env('CAT_API_KEY')];
+    }
+
+    public function doIt()
+    {
+        return "doing it";
     }
 
     /**
@@ -34,14 +39,14 @@ class CatApiIntegrator
      * @param string $category_ids
      * @param string $breed_ids
      *
-     * @return Collection<CatImage>
+     * @return array
      *
      * @throws GuzzleException
      */
     public function search($size = 'full', $limit = 1, $mime_types = 'jpg,png,gif', $format = 'json', $order = 'RANDOM',
                            $page = 0, $category_ids = '', $breed_ids = '')
     {
-        $response = json_decode(($this->client->request(
+        return json_decode(($this->client->request(
             'GET',
             "images/search",
             [
@@ -58,13 +63,6 @@ class CatApiIntegrator
                 'headers' => $this->headers
             ]
         ))->getBody());
-        $cat_collection = new Collection();
-        foreach ($response as $cat_array) {
-            $cat = new CatImage();
-            $cat->populate($cat_array);
-            $cat_collection->add($cat);
-        }
-        return $cat_collection;
     }
 
     /**
