@@ -18,7 +18,7 @@ class ImageControllerTest extends TestCase
         $service = Mockery::mock(CatApiIntegrator::class);
 
         $json_output = File::get(base_path('tests/data/sample_random_images.json'));
-        $service->shouldReceive('search')->andReturn(json_decode($json_output));
+        $service->shouldReceive('search')->once()->andReturn(json_decode($json_output));
 
         $output = (new ImageController($service))->index();
 
@@ -113,8 +113,8 @@ class ImageControllerTest extends TestCase
 
         $json_output          = File::get(base_path('tests/data/sample_' . $id . '.json'));
         $json_analysis_output = File::get(base_path('tests/data/sample_analysis_' . $id . '.json'));
-        $service->shouldReceive('get')->withArgs([$id])->andReturn(json_decode($json_output));
-        $service->shouldReceive('analysis')->withArgs([$id])->andReturn(json_decode($json_analysis_output));
+        $service->shouldReceive('get')->once()->withArgs([$id])->andReturn(json_decode($json_output));
+        $service->shouldReceive('analysis')->once()->withArgs([$id])->andReturn(json_decode($json_analysis_output));
 
         return $service;
 
