@@ -6,6 +6,10 @@ use App\Helper\Assigner;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
+/**
+ * Class CatImage
+ * @package App
+ */
 class CatImage extends Model
 {
     public $id;
@@ -14,6 +18,11 @@ class CatImage extends Model
     public $labels;
     public $created_at;
 
+    /**
+     * CatImage constructor.
+     *
+     * @param array $attributes
+     */
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -21,7 +30,7 @@ class CatImage extends Model
     }
 
     /**
-     * @param array $api_search_response
+     * @param \stdClass $api_search_response
      *
      * @return Collection<CatImage>
      */
@@ -29,30 +38,36 @@ class CatImage extends Model
     {
         $cat_collection = new Collection();
         foreach ($api_search_response as $cat_array) {
-            $cat = new CatImage();
-            $cat->populate($cat_array);
+            $cat = self::populate($cat_array);
             $cat_collection->add($cat);
         }
         return $cat_collection;
     }
 
     /**
-     * @param Object $attributes
+     * @param \stdClass $cat_attributes
+     * @param array     $analysis_attributes
+     *
+     * @return CatImage
      */
-    public function populate($attributes)
+    public static function populate($cat_attributes, $analysis_attributes = [])
     {
-        if (isset($attributes)) {
-            $this->id = Assigner::assignIfPropertyExists($attributes, 'id');
-            $this->url = Assigner::assignIfPropertyExists($attributes, 'url');
+        $cat = new CatImage();
+        if (isset($cat_attributes)) {
+            $cat->id  = Assigner::assignIfPropertyExists($cat_attributes, 'id');
+            $cat->url = Assigner::assignIfPropertyExists($cat_attributes, 'url');
         }
-        if (property_exists($attributes, 'breeds') && sizeof($attributes->breeds) > 0) {
-            $this->breed = new Breed();
-            $this->breed->populate($attributes->breeds[0]);
+        if (property_exists($cat_attributes, 'breeds') && sizeof($cat_attributes->breeds) > 0) {
+            $cat->breed = new Breed();
+            $cat->breed->populate($cat_attributes->breeds[0]);
         }
+
+        $cat->populate_analysis($analysis_attributes);
+        return $cat;
     }
 
     /**
-     * @param $attributes
+     * @param array $attributes
      */
     public function populate_analysis($attributes)
     {

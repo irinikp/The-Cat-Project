@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\CatImage;
 use App\Http\CatApiIntegrator;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 
 /**
@@ -21,6 +20,7 @@ class ImageController extends Controller
 
     /**
      * ImageController constructor.
+     *
      * @param CatApiIntegrator $service
      */
     public function __construct(CatApiIntegrator $service)
@@ -41,14 +41,15 @@ class ImageController extends Controller
      * Display the specified resource.
      *
      * @param  int $id
-     * @return array
+     *
+     * @return CatImage
      * @throws GuzzleException
      */
     public function show($id)
     {
-        $image = $this->service->get($id);
-        $analysis = $this->service->analysis($image);
-
-        return ['image' => $image, 'analysis' => $analysis];
+        $cat_json      = $this->service->get($id);
+        $analysis_json = $this->service->analysis($id);
+        return CatImage::populate($cat_json, $analysis_json);
     }
+
 }

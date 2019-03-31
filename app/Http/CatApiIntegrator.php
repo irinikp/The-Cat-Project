@@ -2,14 +2,12 @@
 
 namespace App\Http;
 
-use App\CatImage;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Support\Collection;
 
 class CatApiIntegrator
 {
-    const BASE_URL = "https://api.thecatapi.com/v1/";
+    const BASE_URL  = "https://api.thecatapi.com/v1/";
     const CLASS_URL = "images/";
 
     protected $client;
@@ -17,29 +15,29 @@ class CatApiIntegrator
 
     public function __construct()
     {
-        $this->client = new Client([
+        $this->client  = new Client([
             'base_uri' => self::BASE_URL,
-            'timeout' => 2.0
+            'timeout'  => 2.0
         ]);
         $this->headers = ['x-api-key:' . env('CAT_API_KEY')];
     }
 
-    public function doIt()
-    {
-        return "doing it";
-    }
-
     /**
      * @param string $size
-     * @param int $limit
+     * @param int    $limit
      * @param string $mime_types
      * @param string $format
      * @param string $order
-     * @param int $page
+     * @param int    $page
      * @param string $category_ids
      * @param string $breed_ids
      *
-     * @return array
+     * @return mixed the value encoded in <i>json</i> in appropriate
+     * PHP type. Values true, false and
+     * null (case-insensitive) are returned as <b>TRUE</b>, <b>FALSE</b>
+     * and <b>NULL</b> respectively. <b>NULL</b> is returned if the
+     * <i>json</i> cannot be decoded or if the encoded
+     * data is deeper than the recursion limit.
      *
      * @throws GuzzleException
      */
@@ -50,15 +48,15 @@ class CatApiIntegrator
             'GET',
             "images/search",
             [
-                'query' => [
-                    'size' => $size,
-                    'mime_types' => $mime_types,
-                    'format' => $format,
-                    'order' => $order,
-                    'page' => $page,
-                    'limit' => $limit,
+                'query'   => [
+                    'size'         => $size,
+                    'mime_types'   => $mime_types,
+                    'format'       => $format,
+                    'order'        => $order,
+                    'page'         => $page,
+                    'limit'        => $limit,
                     'category_ids' => $category_ids,
-                    'breed_ids' => $breed_ids
+                    'breed_ids'    => $breed_ids
                 ],
                 'headers' => $this->headers
             ]
@@ -66,40 +64,45 @@ class CatApiIntegrator
     }
 
     /**
-     * @param CatImage $image
+     * @param int $id
      *
-     * @return CatImage
+     * @return mixed the value encoded in <i>json</i> in appropriate
+     * PHP type. Values true, false and
+     * null (case-insensitive) are returned as <b>TRUE</b>, <b>FALSE</b>
+     * and <b>NULL</b> respectively. <b>NULL</b> is returned if the
+     * <i>json</i> cannot be decoded or if the encoded
+     * data is deeper than the recursion limit.
      *
      * @throws GuzzleException
      */
-    public function analysis($image)
+    public function analysis($id)
     {
-        $response = json_decode(($this->client->request(
+        return json_decode(($this->client->request(
             'GET',
-            "images/$image->id/analysis",
+            "images/$id/analysis",
             ['headers' => $this->headers]
         ))->getBody());
-        $image->populate_analysis($response);
-        return $image;
     }
 
     /**
      * @param int $image_id
      *
-     * @return CatImage
+     * @return mixed the value encoded in <i>json</i> in appropriate
+     * PHP type. Values true, false and
+     * null (case-insensitive) are returned as <b>TRUE</b>, <b>FALSE</b>
+     * and <b>NULL</b> respectively. <b>NULL</b> is returned if the
+     * <i>json</i> cannot be decoded or if the encoded
+     * data is deeper than the recursion limit.
      *
      * @throws GuzzleException
      */
     public function get($image_id)
     {
-        $response = json_decode(($this->client->request(
+        return json_decode(($this->client->request(
             'GET',
             "images/$image_id",
             ['headers' => $this->headers]
         ))->getBody());
-        $cat_image = new CatImage();
-        $cat_image->populate($response);
-        return $cat_image;
     }
 
 }

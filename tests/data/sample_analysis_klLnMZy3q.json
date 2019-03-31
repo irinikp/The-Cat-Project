@@ -1,0 +1,50 @@
+[
+  {
+    "labels": [
+      {
+        "Name": "Mammal",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Jaguar",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Wildlife",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Panther",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Animal",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Leopard",
+        "Confidence": 93.91324615478516
+      },
+      {
+        "Name": "Pet",
+        "Confidence": 93.45498657226562
+      },
+      {
+        "Name": "Manx",
+        "Confidence": 93.45498657226562
+      },
+      {
+        "Name": "Cat",
+        "Confidence": 93.45498657226562
+      },
+      {
+        "Name": "Abyssinian",
+        "Confidence": 52.81649398803711
+      }
+    ],
+    "moderation_labels": [],
+    "vendor": "AWS Rekognition",
+    "image_id": "xBR2jSIG7",
+    "created_at": "2018-12-06T03:10:00.000Z"
+  }
+]

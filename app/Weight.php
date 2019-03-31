@@ -17,7 +17,7 @@ class Weight extends Model
     {
         if (isset($attributes)) {
             $this->imperial = Assigner::assignIfPropertyExists($attributes, 'imperial');
-            $this->metric = Assigner::assignIfPropertyExists($attributes, 'metric');
+            $this->metric   = Assigner::assignIfPropertyExists($attributes, 'metric');
         }
     }
 }

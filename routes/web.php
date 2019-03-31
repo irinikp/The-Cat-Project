@@ -18,15 +18,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/random-image', 'ImageController@randomImagesView');
-Route::get('/random-image', function (){
+Route::get('/random-image', function () {
     return response()
         ->view('random-image',
             ['cat_collection' => (new ImageController(new CatApiIntegrator()))->index()], 200);
 });
-Route::get('/image/{id}', function($id){
-    return response()->view('image', (new ImageController(new CatApiIntegrator()))->show($id), 200);
+
+Route::get('/image/{id}', function ($id) {
+    return response()->view('image', ['image' => (new ImageController(new CatApiIntegrator()))->show($id)], 200);
 });
+
 Route::fallback(function () {
     return response()->json(
         [
